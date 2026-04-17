@@ -62,7 +62,7 @@ test('E2E event book automation flow',async({page})=>{
      await page.getByRole('button',{name:'Confirm Booking'}).click();
 
      //Verify Booking confirmation
-     await expect(page.getByRole('main')).toContainText('Booking Confirmed!');
+     await expect(page.getByRole('heading',{name:/Booking Confirmed/i})).toBeVisible();
      const bookRef = await page.locator('.booking-ref').textContent();
      console.log("Booking reference ID:",bookRef);
 
@@ -76,6 +76,7 @@ test('E2E event book automation flow',async({page})=>{
 
      //Verify seats reduces from events page
      await page.getByTestId('nav-events').click();
+     await page.waitForResponse(res=>res.url().includes('/events') && res.status() === 200);
      await expect(page.getByTestId('event-card').first()).toBeVisible();
      const EventCard = page.getByTestId('event-card').filter({
         has: page.getByRole('heading',{name:EventTitle})
@@ -84,5 +85,5 @@ test('E2E event book automation flow',async({page})=>{
      const rawTextUpdated = await EventCard.locator('.text-emerald-600').textContent();
      const updatedCount = rawTextUpdated.split(' ')[0];
      console.log('After booking seats count:',updatedCount);
-     expect(Number(updatedCount)).toBe(Number(beforeBookSeatsCount-1));
+     expect(Number(updatedCount)).toBe(Number(beforeBookSeatsCount)-1);
 });
