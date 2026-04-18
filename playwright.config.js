@@ -14,10 +14,10 @@ const config = {
   },
   reporter:'html',
   use:{
-    browserName:'chromium',
-    headless:true,
-    trace:'retain-on-failure',
-    screenshot:'on'
+    browserName: 'chromium',
+    headless: true,
+    trace: 'retain-on-failure',
+    screenshot: 'on'
   }
 
 }
