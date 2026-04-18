@@ -1,10 +1,10 @@
+require('dotenv').config();
 const {test, expect} = require('@playwright/test');
 const{futureDateValue} = require('../utils/featureDateValue');
 const{RegisterUser,LoginPage,EventCreation,EventHub,EventBook,MyBookings} = require('../pages');
 
 test('E2E event book automation flow',async({page})=>{
     //Setting env variables
-    require('dotenv').config();
     const username = `user_${Date.now()}_${Math.floor(Math.random()*1000)}@gmail.com`;
     const password = process.env.PASSWORD;
 
@@ -18,7 +18,7 @@ test('E2E event book automation flow',async({page})=>{
     //Login into the account 
     const loginPage = new LoginPage(page);
     await loginPage.waitForPage();
-    await loginPage.looginUser(username,password);
+    await loginPage.loginUser(username,password);
     await expect(loginPage.dashboardHeading).toBeVisible();
 
     //Creating a new event

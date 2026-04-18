@@ -12,7 +12,7 @@ class LoginPage{
         await this.page.waitForURL(/\/login$/);
         await this.signInHeading.waitFor({state:'visible'});
     }
-    async looginUser(username,password){
+    async loginUser(username,password){
         await this.userName.fill(username);
         await this.password.fill(password);
         await this.loginBtn.click();
