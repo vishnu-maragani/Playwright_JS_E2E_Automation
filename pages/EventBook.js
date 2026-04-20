@@ -8,6 +8,7 @@ class EventBook{
         this.bookBtn = page.getByRole('button',{name:'Confirm Booking'});
         this.ConfirmBookingHeading = page.getByRole('heading',{name:/Booking Confirmed/i});
         this.bookRef = page.locator('.booking-ref');
+        this.ticketsLocator = page.getByRole('button',{name:'+'});
     }
 
     async eventBook({
@@ -25,6 +26,4 @@ class EventBook{
         await this.ConfirmBookingHeading.waitFor({state:'visible'});
     }
 }
-
-
 module.exports  = {EventBook};
