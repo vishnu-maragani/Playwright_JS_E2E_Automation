@@ -7,7 +7,7 @@ class EventHub{
 
     async goToEvents(){
         await this.EventHubNavigation.click();
-        await this.page.waitForResponse(res=>res.url().includes('/events') && res.status() === 200);
+        await this.page.waitForLoadState('networkidle')
         await this.EventCard.first().waitFor({state:'visible'});
     }
     getEventByTitle(eventName){

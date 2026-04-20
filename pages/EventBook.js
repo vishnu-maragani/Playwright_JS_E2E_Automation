@@ -23,6 +23,7 @@ class EventBook{
 
     async confirmBooking(){
         await this.bookBtn.click();
+        await this.page.waitForLoadState('networkidle');
         await this.ConfirmBookingHeading.waitFor({state:'visible'});
     }
 }

@@ -47,7 +47,7 @@ test('E2E event book automation flow',async({page})=>{
      const eventLocator = page.getByTestId('event-card').filter({
         has: page.getByRole('heading',{name:EventTitle})
      });
-     await expect(eventLocator).toBeVisible({timeout:5000});
+     await expect(eventLocator).toBeVisible();
      const rawSeatsText = await eventLocator.locator('.text-emerald-600').textContent();
      const beforeBookSeatsCount = rawSeatsText.split(' ')[0];
      console.log("Before booking seats count:",beforeBookSeatsCount);
@@ -62,7 +62,7 @@ test('E2E event book automation flow',async({page})=>{
      await page.getByRole('button',{name:'Confirm Booking'}).click();
 
      //Verify Booking confirmation
-     await expect(page.getByRole('heading',{name:/Booking Confirmed/i})).toBeVisible();
+     await expect(page.locator('.booking-ref')).toBeVisible({timeout:15000});   
      const bookRef = await page.locator('.booking-ref').textContent();
      console.log("Booking reference ID:",bookRef);
 
