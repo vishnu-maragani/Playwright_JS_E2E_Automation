@@ -56,7 +56,11 @@ test('E2E event book automation flow',async({page})=>{
      await events.goToEvents();
      const EventCard = await events.getEventByTitle(EventTitle);
      await expect(EventCard).toBeVisible();
-     const updatedCount = await events.getAvailableSeats(EventCard);
-     console.log('After booking seats count:',updatedCount);
-     expect(Number(updatedCount)).toBe(Number(beforeBookSeatsCount)-1);
+     const expectedCount = String(Number(beforeBookSeatsCount-1));
+    await expect(async ()=>{
+      const updatedCount = await events.getAvailableSeats(EventCard);  
+      console.log('After booking seats count:',updatedCount);
+      expect(Number(updatedCount)).toBe(Number(expectedCount));
+    }).toPass({timeout:30000});
+     
 });
