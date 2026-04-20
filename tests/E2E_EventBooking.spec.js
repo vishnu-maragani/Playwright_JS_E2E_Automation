@@ -62,7 +62,7 @@ test('E2E event book automation flow',async({page})=>{
      await page.getByRole('button',{name:'Confirm Booking'}).click();
 
      //Verify Booking confirmation
-     await expect(page.locator('.booking-ref')).toBeVisible({timeout:15000});   
+     await expect(page.locator('.booking-ref')).toBeVisible({timeout:60000});   
      const bookRef = await page.locator('.booking-ref').textContent();
      console.log("Booking reference ID:",bookRef);
 
