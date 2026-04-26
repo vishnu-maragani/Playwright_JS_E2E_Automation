@@ -39,7 +39,7 @@ test('E2E event book automation flow',async({page})=>{
 
      //Fill booking form
      const eventBookForm = new EventBook(page);
-     const phNumber = Math.floor(Math.random()*10000000000).toString();
+     const phNumber = Math.floor(1000000000+Math.random()*9000000000).toString();
      await expect(eventBookForm.ticketCount).toHaveText('1');
      await eventBookForm.eventBook({name:'Vishnu',email:username,phno:phNumber});
      await eventBookForm.confirmBooking();
